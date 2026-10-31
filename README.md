@@ -1,6 +1,11 @@
-# Digital Seva & Online Services Shortcuts Portal
+# Chandu - Personal Online Services Hub
 
-A clean, lightning-fast personal dashboard for instant 1-click access to official Indian government portals, banking services, utility bill payments, travel bookings, and educational applications.
+A fast, responsive personal dashboard providing instant 1-click access to official Indian government portals, banking services, utility bill payments, travel bookings, and educational applications.
+
+## 🌐 Live Deployments
+- **Vercel Production:** [https://chandu-online-services.vercel.app](https://chandu-online-services.vercel.app)
+- **GitHub Pages:** [https://kornipatiakash-1969.github.io/chandu-online-services/](https://kornipatiakash-1969.github.io/chandu-online-services/)
+- **GitHub Repository:** [https://github.com/KornipatiAkash-1969/chandu-online-services](https://github.com/KornipatiAkash-1969/chandu-online-services)
 
 ## 🚀 Key Features
 
