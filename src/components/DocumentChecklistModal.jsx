@@ -9,9 +9,10 @@ import {
 } from 'lucide-react';
 
 export default function DocumentChecklistModal({ service, onClose }) {
-  if (!service) return null;
-
+  // Hooks must run before any early return (rules of hooks)
   const [checkedItems, setCheckedItems] = useState({});
+
+  if (!service) return null;
 
   const toggleCheck = (idx) => {
     setCheckedItems(prev => ({

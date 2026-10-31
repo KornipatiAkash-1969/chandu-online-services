@@ -6,7 +6,7 @@ import {
   Zap, 
   X
 } from 'lucide-react';
-import { servicesData } from '../data/servicesData';
+import { servicesData, serviceStats } from '../data/servicesData';
 import DynamicIcon from './DynamicIcon';
 
 export default function Hero({ 
@@ -87,7 +87,7 @@ export default function Hero({
             Online Services <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-600">Shortcuts Portal</span>
           </h1>
           <p className="mt-2.5 sm:mt-3 text-xs xs:text-sm sm:text-base md:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
-            Centralized quick access to 50+ official government portals, banking services, utility bill payments, travel bookings, and educational applications.
+            Centralized quick access to {serviceStats.total} official government portals and authorized providers for banking services, utility bill payments, travel bookings, and educational applications.
           </p>
         </div>
 
@@ -216,12 +216,12 @@ export default function Hero({
         {/* Feature Highlights Bar */}
         <div className="mt-7 sm:mt-10 max-w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
           <div className="bg-white/80 p-2.5 sm:p-3 rounded-xl border border-slate-200 text-slate-700 shadow-2xs">
-            <div className="text-lg sm:text-xl font-extrabold text-brand-700">54+</div>
+            <div className="text-lg sm:text-xl font-extrabold text-brand-700">{serviceStats.total}</div>
             <div className="text-[10px] sm:text-xs text-slate-500 font-medium">Direct Shortcuts</div>
           </div>
           <div className="bg-white/80 p-2.5 sm:p-3 rounded-xl border border-slate-200 text-slate-700 shadow-2xs">
             <div className="text-lg sm:text-xl font-extrabold text-emerald-600">100%</div>
-            <div className="text-[10px] sm:text-xs text-slate-500 font-medium">Official Portals</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 font-medium">Official / Authorized Links</div>
           </div>
           <div className="bg-white/80 p-2.5 sm:p-3 rounded-xl border border-slate-200 text-slate-700 shadow-2xs">
             <div className="text-lg sm:text-xl font-extrabold text-blue-600">1-Click</div>

@@ -1,7 +1,12 @@
 // Centralized Configuration for All Online Services
 // All URLs link directly to official government portals or authorized service providers.
+// Every service URL lives in this file only. Components read it through the helpers
+// exported at the bottom (servicesData, quickAccessPortals, footerPortals, serviceStats).
+// Verification status of each URL is kept in ./linkVerification.js.
 
-export const categories = [
+import { linkVerification } from './linkVerification';
+
+const baseCategories = [
   {
     id: "all",
     label: "All Services",
@@ -60,7 +65,7 @@ export const categories = [
   }
 ];
 
-export const servicesData = [
+const baseServices = [
   // ==========================================
   // GOVERNMENT SERVICES - AADHAAR (UIDAI OFFICIAL PORTAL)
   // ==========================================
@@ -87,7 +92,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/genricDownloadAadhaar",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/genericDownloadAadhaar/en",
     icon: "Download",
     isPopular: true,
     badge: "Direct Download",
@@ -135,19 +140,19 @@ export const servicesData = [
   {
     id: "aadhaar-pvc",
     title: "Order Aadhaar PVC Card",
-    shortDesc: "Log in with your Aadhaar OTP on the official myAadhaar portal to order a durable plastic PVC card delivered via Speed Post.",
+    shortDesc: "Order a durable plastic Aadhaar PVC card on the official myAadhaar portal (Aadhaar OTP required); it is delivered by post.",
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/login",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/pvc/en",
     icon: "CreditCard",
     isPopular: true,
-    badge: "Login & Order (₹50)",
+    badge: "Order Online (₹75)",
     documentsRequired: [
       "12-digit Aadhaar Number or 16-digit Virtual ID (VID)",
       "Registered Mobile Number for OTP Login",
-      "Online Payment of ₹50 (UPI, Net Banking, or Debit Card)",
-      "Steps: Click 'Open Official Portal' -> Login with Aadhaar + OTP -> Click 'Order Aadhaar PVC Card' tile on your dashboard"
+      "Online payment of the ₹75 fee shown on the official page (UPI, Net Banking, or Card)",
+      "Steps: Click 'Open Official Portal' -> Enter your Aadhaar number or VID and verify with the OTP -> Complete the payment"
     ]
   },
   {
@@ -157,7 +162,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/checkStatus",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/checkStatus/en",
     icon: "Clock",
     isPopular: false,
     badge: "Track Dispatch",
@@ -173,7 +178,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/checkStatus",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/CheckAadhaarStatus/en",
     icon: "RotateCw",
     isPopular: false,
     badge: "Track EID / URN",
@@ -189,7 +194,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/login",
+    officialUrl: "https://myaadhaar.uidai.gov.in/du/en_IN",
     icon: "FileCheck",
     isPopular: true,
     badge: "Free Online Update",
@@ -197,7 +202,7 @@ export const servicesData = [
       "Proof of Identity document (Voter ID, PAN, Driving Licence, Passport)",
       "Proof of Address document (Electricity bill, Bank passbook, Ration card)",
       "Aadhaar OTP mobile",
-      "Steps: Click 'Open Official Portal' -> Login with Aadhaar + OTP -> Click 'Document Update' tile"
+      "Steps: Click 'Open Official Portal' -> Sign in with Aadhaar + OTP when asked -> Upload your identity and address documents"
     ]
   },
   {
@@ -207,7 +212,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/verify-email-mobile",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/verify-email-mobile/en",
     icon: "ShieldCheck",
     isPopular: false,
     badge: "Verify Mobile/Email",
@@ -255,7 +260,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/retrieve-eid-uid",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/retrieve-eid-uid/en",
     icon: "Search",
     isPopular: false,
     badge: "Recover UID / EID",
@@ -272,14 +277,14 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/login",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/lock-unlock-biometrics/en",
     icon: "Lock",
     isPopular: false,
     badge: "Biometric Security",
     documentsRequired: [
       "12-digit Aadhaar Number or 16-digit Virtual ID",
       "Aadhaar Registered Mobile for OTP Login",
-      "Steps: Click 'Open Official Portal' -> Login with Aadhaar + OTP -> Click 'Lock / Unlock Biometrics' tile"
+      "Steps: Click 'Open Official Portal' -> Verify with Aadhaar + OTP -> Choose Lock or Unlock"
     ]
   },
   {
@@ -289,7 +294,7 @@ export const servicesData = [
     category: "government",
     subCategory: "Aadhaar Services",
     authority: "UIDAI (Govt. of India)",
-    officialUrl: "https://myaadhaar.uidai.gov.in/vid-generation",
+    officialUrl: "https://myaadhaarbeta.uidai.gov.in/genericGenerateOrRetrieveVID/",
     icon: "KeyRound",
     isPopular: false,
     badge: "16-digit VID",
@@ -321,7 +326,7 @@ export const servicesData = [
   {
     id: "pan-new",
     title: "New PAN Card Application",
-    shortDesc: "Apply for a fresh 10-digit Permanent Account Number (Form 49A) with paperless digital e-KYC.",
+    shortDesc: "Apply for a fresh 10-digit Permanent Account Number (Form 93) with paperless digital e-KYC.",
     category: "government",
     subCategory: "PAN Card Services",
     authority: "Protean / NSDL (Income Tax Dept)",
@@ -1137,11 +1142,11 @@ export const servicesData = [
   {
     id: "edu-results",
     title: "Results Checking (Board & Competitive)",
-    shortDesc: "Check official board examination results (CBSE, Central Boards) and national scorecards.",
+    shortDesc: "Check official board examination results (CBSE and other boards) and national scorecards on the Government of India DigiLocker results portal.",
     category: "education",
     subCategory: "Results & Fee Payments",
-    authority: "National Informatics Centre (NIC)",
-    officialUrl: "https://cbseresults.nic.in/",
+    authority: "CBSE / DigiLocker (Govt. of India)",
+    officialUrl: "https://results.digilocker.gov.in/",
     icon: "FileCheck",
     isPopular: true,
     badge: "Official Results Portal",
@@ -1223,11 +1228,11 @@ export const servicesData = [
 ];
 
 // Quick Access Portals for frequently accessed high-traffic destinations
-export const quickAccessPortals = [
+const baseQuickAccess = [
   {
     name: "UIDAI Official Portal",
     dept: "UIDAI, Govt of India",
-    url: "https://uidai.gov.in/en/",
+    serviceId: "aadhaar-uidai-portal",
     icon: "Fingerprint",
     badge: "Identity",
     color: "from-blue-600 to-indigo-700"
@@ -1235,7 +1240,7 @@ export const quickAccessPortals = [
   {
     name: "Parivahan Sarathi",
     dept: "MoRTH, Road Transport",
-    url: "https://sarathi.parivahan.gov.in/",
+    serviceId: "licence-learner",
     icon: "Car",
     badge: "Transport",
     color: "from-sky-600 to-cyan-700"
@@ -1243,7 +1248,7 @@ export const quickAccessPortals = [
   {
     name: "NSDL / Protean PAN",
     dept: "Income Tax Department",
-    url: "https://onlineservices.proteantech.in/paam/endUserRegisterContact.html",
+    serviceId: "pan-new",
     icon: "FileBadge",
     badge: "Taxation",
     color: "from-blue-700 to-indigo-800"
@@ -1251,7 +1256,7 @@ export const quickAccessPortals = [
   {
     name: "Voters Service Portal",
     dept: "Election Commission of India",
-    url: "https://voters.eci.gov.in/",
+    serviceId: "voter-new",
     icon: "UserCheck",
     badge: "Elections",
     color: "from-emerald-600 to-teal-700"
@@ -1259,7 +1264,7 @@ export const quickAccessPortals = [
   {
     name: "EPFO Member Portal",
     dept: "Ministry of Labour",
-    url: "https://unifiedportal-mem.epfindia.gov.in/memberinterface/",
+    serviceId: "pf-account",
     icon: "Briefcase",
     badge: "PF & Pension",
     color: "from-amber-600 to-orange-700"
@@ -1267,7 +1272,7 @@ export const quickAccessPortals = [
   {
     name: "IRCTC NextGen",
     dept: "Indian Railways",
-    url: "https://www.irctc.co.in/nget/train-search",
+    serviceId: "travel-train-booking",
     icon: "Train",
     badge: "Railway",
     color: "from-red-600 to-rose-700"
@@ -1275,7 +1280,7 @@ export const quickAccessPortals = [
   {
     name: "National Scholarship",
     dept: "Govt of India (NSP)",
-    url: "https://scholarships.gov.in/",
+    serviceId: "edu-scholarships",
     icon: "GraduationCap",
     badge: "Scholarships",
     color: "from-purple-600 to-violet-700"
@@ -1283,12 +1288,62 @@ export const quickAccessPortals = [
   {
     name: "Bharat Connect",
     dept: "NPCI Network",
-    url: "https://www.bharat-connect.com/",
+    serviceId: "fin-electricity-bill",
     icon: "Zap",
     badge: "Utilities",
     color: "from-teal-600 to-emerald-700"
   }
 ];
+
+// ------------------------------------------------------------------
+// Derived exports (do not hard-code URLs or counts anywhere else)
+// ------------------------------------------------------------------
+
+// All services, each carrying its link-verification metadata
+export const servicesData = baseServices.map((service) => ({
+  ...service,
+  link: linkVerification[service.id] || { status: 'unverified', note: '' }
+}));
+
+export const getService = (id) => servicesData.find((s) => s.id === id);
+
+export const getServiceUrl = (id) => {
+  const service = getService(id);
+  if (!service) {
+    throw new Error(`servicesData.js: unknown service id "${id}"`);
+  }
+  return service.officialUrl;
+};
+
+// Live counts used in headings and badges
+export const serviceStats = {
+  total: servicesData.length,
+  byCategory: servicesData.reduce((acc, s) => {
+    acc[s.category] = (acc[s.category] || 0) + 1;
+    return acc;
+  }, {})
+};
+
+export const categories = baseCategories.map((cat) =>
+  cat.id === 'all'
+    ? { ...cat, description: `Browse all ${serviceStats.total} citizen, financial, travel and educational online services` }
+    : cat
+);
+
+// Quick access tiles: URL comes from the referenced service
+export const quickAccessPortals = baseQuickAccess.map((portal) => ({
+  ...portal,
+  url: getServiceUrl(portal.serviceId)
+}));
+
+// Footer "Official Portals" list: URL comes from the referenced service
+export const footerPortals = [
+  { label: 'UIDAI Official Portal', serviceId: 'aadhaar-uidai-portal' },
+  { label: 'ECI Voters Service', serviceId: 'voter-new' },
+  { label: 'Parivahan Sarathi (DL)', serviceId: 'licence-learner' },
+  { label: 'EPFO Unified Portal', serviceId: 'pf-account' },
+  { label: 'IRCTC NextGen', serviceId: 'travel-train-booking' }
+].map((item) => ({ ...item, url: getServiceUrl(item.serviceId) }));
 
 // Offline Center Amenities / Value Added Services
 export const offlineServices = [

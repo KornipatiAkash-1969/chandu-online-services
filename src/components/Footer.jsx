@@ -8,6 +8,7 @@ import {
   ArrowUp,
   X
 } from 'lucide-react';
+import { footerPortals } from '../data/servicesData';
 
 export default function Footer({ onSelectCategory }) {
   const [activeModal, setActiveModal] = useState(null);
@@ -51,7 +52,7 @@ export default function Footer({ onSelectCategory }) {
 
               <div className="pt-0.5 flex items-center space-x-2 text-xs text-emerald-400">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>100% Direct Sovereign Links</span>
+                <span>Direct Official &amp; Authorized Links</span>
               </div>
             </div>
 
@@ -90,36 +91,14 @@ export default function Footer({ onSelectCategory }) {
                 Official Sovereign Portals
               </h4>
               <ul className="space-y-2 text-xs text-slate-400">
-                <li>
-                  <a href="https://uidai.gov.in/en/" target="_blank" rel="noopener" className="hover:text-white flex items-center space-x-1 py-0.5">
-                    <span>UIDAI Official Portal</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://voters.eci.gov.in/" target="_blank" rel="noopener" className="hover:text-white flex items-center space-x-1 py-0.5">
-                    <span>ECI Voters Service</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://sarathi.parivahan.gov.in/sarathiservice/" target="_blank" rel="noopener" className="hover:text-white flex items-center space-x-1 py-0.5">
-                    <span>Parivahan Sarathi (DL)</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://unifiedportal-mem.epfindia.gov.in/memberinterface/" target="_blank" rel="noopener" className="hover:text-white flex items-center space-x-1 py-0.5">
-                    <span>EPFO Unified Portal</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.irctc.co.in/nget/train-search" target="_blank" rel="noopener" className="hover:text-white flex items-center space-x-1 py-0.5">
-                    <span>IRCTC NextGen</span>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-                </li>
+                {footerPortals.map((portal) => (
+                  <li key={portal.serviceId}>
+                    <a href={portal.url} target="_blank" rel="noopener" className="hover:text-white flex items-center space-x-1 py-0.5">
+                      <span>{portal.label}</span>
+                      <ExternalLink className="w-3 h-3 text-slate-500" />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -152,8 +131,11 @@ export default function Footer({ onSelectCategory }) {
 
           {/* Bottom Bar */}
           <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2.5">
-            <div>
+            <div className="text-center sm:text-left">
               Chandu • Personal Online Services Shortcuts
+              <span className="block sm:inline sm:ml-2">
+                • Independent directory, not an official government website.
+              </span>
             </div>
 
             <button

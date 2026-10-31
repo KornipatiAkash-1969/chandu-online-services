@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   LayoutGrid, 
   Landmark, 
@@ -22,6 +22,12 @@ export default function CategorySection({
   onTogglePin
 }) {
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
+
+  // Header, footer and hero change the category from outside this component.
+  // Reset the sub-filter then, otherwise a stale sub-category can hide every card.
+  useEffect(() => {
+    setSelectedSubCategory('All');
+  }, [selectedCategory]);
 
   // Find active category config
   const currentCategory = categories.find(c => c.id === selectedCategory) || categories[0];

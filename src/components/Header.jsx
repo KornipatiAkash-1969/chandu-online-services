@@ -11,6 +11,7 @@ import {
   PlaneTakeoff,
   GraduationCap
 } from 'lucide-react';
+import { serviceStats } from '../data/servicesData';
 
 export default function Header({ 
   selectedCategory, 
@@ -61,6 +62,18 @@ export default function Header({
     }
   };
 
+  // Ctrl+K (Cmd+K on Mac) jumps to the search box, as advertised on the Search button
+  useEffect(() => {
+    const handleShortcut = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        focusSearchInput();
+      }
+    };
+    window.addEventListener('keydown', handleShortcut);
+    return () => window.removeEventListener('keydown', handleShortcut);
+  }, []);
+
   return (
     <>
       <header className={`sticky top-0 z-40 transition-all duration-200 bg-white/95 backdrop-blur-md ${
@@ -87,7 +100,7 @@ export default function Header({
                   </span>
                 </div>
                 <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium hidden sm:block truncate">
-                  Direct Official Shortcuts • 50+ Citizen & Financial Services
+                  Direct Official Shortcuts • {serviceStats.total} Citizen & Financial Services
                 </p>
               </div>
             </div>
@@ -222,7 +235,7 @@ export default function Header({
               >
                 <div className="flex items-center space-x-2.5">
                   <LayoutGrid className="w-4 h-4 text-brand-600" />
-                  <span>All 54 Portals</span>
+                  <span>All {serviceStats.total} Portals</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </button>

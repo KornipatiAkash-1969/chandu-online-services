@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star, ExternalLink, ArrowRight, ShieldCheck } from 'lucide-react';
-import { servicesData } from '../data/servicesData';
+import { servicesData, serviceStats } from '../data/servicesData';
 import DynamicIcon from './DynamicIcon';
 
 export default function PopularServices({ onOpenDocsModal, onSelectCategory, pinnedIds, onTogglePin }) {
@@ -42,7 +42,7 @@ export default function PopularServices({ onOpenDocsModal, onSelectCategory, pin
             onClick={() => onSelectCategory('all')}
             className="text-xs sm:text-sm font-semibold text-brand-600 hover:text-brand-800 inline-flex items-center space-x-1 shrink-0 group self-start sm:self-auto pt-1 sm:pt-0"
           >
-            <span>View All 50+ Portals</span>
+            <span>View All {serviceStats.total} Portals</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
