@@ -12,6 +12,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { serviceStats } from '../data/servicesData';
+import logoLockup from '../assets/brand/logo-lockup.webp';
 
 export default function Header({ 
   selectedCategory, 
@@ -87,19 +88,22 @@ export default function Header({
               onClick={() => { setSelectedCategory('all'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer group select-none min-w-0"
             >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform shrink-0">
-                <Landmark className="w-4 h-4 sm:w-5 sm:h-5" />
+              {/* Brand wordmark lockup (black badge so it stays crisp on the white header) */}
+              <div className="shrink-0 overflow-hidden rounded-xl bg-black ring-1 ring-slate-900/10 shadow-md shadow-slate-900/10 group-hover:shadow-lg transition-shadow">
+                <img
+                  src={logoLockup}
+                  alt="Chandu Online Services"
+                  width="720"
+                  height="233"
+                  decoding="async"
+                  className="block h-9 sm:h-11 w-auto"
+                />
               </div>
               <div className="min-w-0">
-                <div className="flex items-center space-x-1.5 sm:space-x-2">
-                  <span className="text-base sm:text-xl font-bold tracking-tight text-slate-900 font-sans truncate">
-                    Chandu
-                  </span>
-                  <span className="hidden xs:inline-block bg-brand-50 text-brand-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-brand-200 shrink-0">
-                    Quick Access
-                  </span>
-                </div>
-                <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium hidden sm:block truncate">
+                <span className="hidden xs:inline-block bg-brand-50 text-brand-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-brand-200 shrink-0">
+                  Quick Access
+                </span>
+                <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium hidden sm:block lg:hidden xl:block truncate mt-0.5">
                   Direct Official Shortcuts • {serviceStats.total} Citizen & Financial Services
                 </p>
               </div>

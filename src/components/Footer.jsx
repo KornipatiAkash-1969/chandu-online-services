@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  Landmark, 
   ExternalLink, 
   ShieldCheck, 
   Lock, 
@@ -9,6 +8,7 @@ import {
   X
 } from 'lucide-react';
 import { footerPortals } from '../data/servicesData';
+import logoFull from '../assets/brand/logo-full.webp';
 
 export default function Footer({ onSelectCategory }) {
   const [activeModal, setActiveModal] = useState(null);
@@ -32,19 +32,18 @@ export default function Footer({ onSelectCategory }) {
             
             {/* Col 1: Brand & Purpose */}
             <div className="space-y-2.5 sm:space-y-3">
-              <div className="flex items-center space-x-2.5 cursor-pointer" onClick={scrollToTop}>
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-md shrink-0">
-                  <Landmark className="w-4 h-4 sm:w-5 sm:h-5" />
-                </div>
-                <div>
-                  <span className="text-base sm:text-lg font-bold tracking-tight text-white font-sans block">
-                    Chandu
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
-                    Personal Online Services Hub
-                  </span>
-                </div>
-              </div>
+              {/* Full logo. Its black background blends into the dark footer. */}
+              <button type="button" onClick={scrollToTop} className="block cursor-pointer" aria-label="Back to top">
+                <img
+                  src={logoFull}
+                  alt="Chandu Online Services - Your Online Service Partner"
+                  width="900"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  className="block w-56 sm:w-64 max-w-full h-auto mix-blend-screen"
+                />
+              </button>
 
               <p className="text-slate-400 text-xs leading-relaxed">
                 Centralized personal dashboard providing instant 1-click shortcuts to official Indian sovereign portals and authorized utilities.
@@ -132,7 +131,7 @@ export default function Footer({ onSelectCategory }) {
           {/* Bottom Bar */}
           <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2.5">
             <div className="text-center sm:text-left">
-              Chandu • Personal Online Services Shortcuts
+              Chandu Online Services • Personal Online Services Shortcuts
               <span className="block sm:inline sm:ml-2">
                 • Independent directory, not an official government website.
               </span>
